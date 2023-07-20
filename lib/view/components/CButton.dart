@@ -11,7 +11,7 @@ class CButton extends StatelessWidget {
     required this.onPressed,
     this.size = CSize.MD,
     this.disabled = false,
-    this.type = CType.PRIMARY,
+    this.type = CButtonType.PRIMARY,
   });
 
   final String text;
@@ -20,24 +20,24 @@ class CButton extends StatelessWidget {
   final Widget? suffixIcon;
   final VoidCallback onPressed;
   final bool disabled;
-  final CType type;
+  final CButtonType type;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: !disabled ? onPressed : null,
       style: ElevatedButton.styleFrom(
-        disabledBackgroundColor: type == CType.PRIMARY
+        disabledBackgroundColor: type == CButtonType.PRIMARY
             ? disabled
                 ? AppColors.gray
                 : null
             : AppColors.light,
         backgroundColor:
-            type == CType.PRIMARY ? AppColors.primary : AppColors.light,
+            type == CButtonType.PRIMARY ? AppColors.primary : AppColors.light,
         shadowColor: Colors.transparent,
         elevation: 0,
         shape: StadiumBorder(
-          side: type == CType.PRIMARY
+          side: type == CButtonType.PRIMARY
               ? BorderSide.none
               : const BorderSide(
                   width: 1,
@@ -82,7 +82,7 @@ class CButton extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: size == CSize.SM ? 14 : 15,
-                color: type == CType.PRIMARY
+                color: type == CButtonType.PRIMARY
                     ? !disabled
                         ? AppColors.accent
                         : AppColors.light

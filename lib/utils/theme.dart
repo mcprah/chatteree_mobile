@@ -1,25 +1,32 @@
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-TextStyle bodyTextStyle = const TextStyle(
+///
+/// TextStyles
+/// 
+
+TextStyle cBodyTextStyle = const TextStyle(
   color: AppColors.primary,
   fontSize: 15,
   fontWeight: FontWeight.normal,
 );
 
-TextStyle smallBodyTextStyle = const TextStyle(
+TextStyle cSmallBodyTextStyle = const TextStyle(
   color: AppColors.primary,
   fontSize: 12,
   fontWeight: FontWeight.normal,
 );
 
-TextStyle subText = const TextStyle(
+TextStyle cSubText = const TextStyle(
   color: AppColors.primary,
   fontSize: 14,
   fontWeight: FontWeight.normal,
 );
 
-// Inputs
+///
+/// Input Styles
+/// 
+
 InputBorder buildAccentStadiumBorder() {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(30),

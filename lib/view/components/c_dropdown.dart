@@ -36,7 +36,8 @@ class CDropdown extends StatelessWidget {
             child: Text(
               label!,
               style: const TextStyle(
-                  color: Colors.grey), // Use your custom style here
+                color: AppColors.gray,
+              ),
             ),
           ),
         DropdownButtonFormField(
@@ -45,7 +46,7 @@ class CDropdown extends StatelessWidget {
           value: selectedValue!.isNotEmpty ? selectedValue : null,
           onChanged: (value) {
             return onChanged?.call(value);
-          }, // Add your logic to handle dropdown changes
+          },
           validator: validator,
           decoration: cDefaultInputDecoration.copyWith(
             hintText: placeholder,
@@ -69,6 +70,4 @@ class CDropdown extends StatelessWidget {
       ],
     );
   }
-
-  // Define your buildAccentStadiumBorder and buildStadiumBorder methods here
 }

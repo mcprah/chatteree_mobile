@@ -1,5 +1,9 @@
+import 'package:chatteree_mobile/utils/colors.dart';
+import 'package:chatteree_mobile/utils/constants.dart';
+import 'package:chatteree_mobile/view/components/CButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -22,24 +26,10 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const MyHomePage(title: 'Chatteree'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(),
+      home: Scaffold(
+        backgroundColor: AppColors.light,
+        body: Center(),
+      ),
     );
   }
 }

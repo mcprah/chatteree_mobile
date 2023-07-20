@@ -23,7 +23,7 @@ class CIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.fromSize(
-      size: size == CSize.SM ? const Size(32, 32) : const Size(48, 48),
+      size: size == CSize.SM ? const Size(40, 40) : const Size(48, 48),
       child: ClipOval(
         child: Material(
           color: !disabled ? AppColors.primary : AppColors.gray,

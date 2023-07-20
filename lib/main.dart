@@ -1,6 +1,7 @@
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
+import 'package:chatteree_mobile/view/screens/sign_in.dart';
 import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
 import 'package:chatteree_mobile/view/widgets/c_text_button.dart';
 import 'package:chatteree_mobile/view/widgets/c_dropdown.dart';
@@ -19,7 +20,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
 
     return MaterialApp(
       title: 'Chatteree',
@@ -31,62 +31,14 @@ class MyApp extends StatelessWidget {
           modalBarrierColor: Colors.black.withOpacity(0.15),
           elevation: 0,
         ),
-        // inputDecorationTheme: InputDecorationTheme(
-        //   focusedBorder: buildAccentStadiumBorder(),
-        //   enabledBorder: buildStadiumBorder(),
-        //   contentPadding: const EdgeInsets.symmetric(
-        //     horizontal: 24,
-        //     vertical: 18,
-        //   ),
-        // ),
       ),
-      home: Scaffold(
+      home: const Scaffold(
+
         backgroundColor: AppColors.light,
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      CTextField(
-                        textController: TextEditingController(),
-                        label: "Label",
-                        placeholder: "Typeee",
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Not be empty';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      CDropdown(
-                        dropdownItems: const ["Maame", "Ama", "Adwoa", "Mansa"],
-                        selectedValue: '',
-                        placeholder: "Select option",
-                        textController: TextEditingController(),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      CTextButton(
-                        text: "Button",
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
-                        },
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+        body: SafeArea(
+          top: true,
+          bottom: false,
+          child: SignIn(),
         ),
       ),
     );

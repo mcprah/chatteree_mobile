@@ -3,26 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 
-class CTextField extends StatefulWidget {
-
+class CTextField extends StatelessWidget {
   final String placeholder;
   final String? label;
   final String? Function(String?)? validator;
   final TextEditingController textController;
+  final bool? hasSuffixWidget;
+  final TextInputType? keyboardType;
 
-    const CTextField({
+  const CTextField({
     super.key,
     this.label,
     this.placeholder = "Enter text",
     this.validator,
     required this.textController,
+    this.hasSuffixWidget = false,
+    this.keyboardType,
   });
 
-  @override
-  State<CTextField> createState() => _CTextFieldState();
-}
-
-class _CTextFieldState extends State<CTextField> {
   @override
   Widget build(BuildContext context) {
     return FocusScope(
@@ -35,23 +33,29 @@ class _CTextFieldState extends State<CTextField> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.label != null)
+                if (label != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8, left: 16),
                     child: Text(
-                      widget.label!,
+                      label!,
                       style: cSubText.copyWith(color: AppColors.gray),
                     ),
                   ),
                 TextFormField(
-                  controller: widget.textController,
+                  controller: textController,
+                  keyboardType: keyboardType ?? TextInputType.text,
                   cursorColor: AppColors.primary,
                   validator: (value) {
-                    String? error = widget.validator?.call(value);
-                    return error; // Return the validation error message to be displayed
+                    String? error = validator?.call(value);
+                    return error;
+                  },
+                  onTapOutside: (e) {
+                    if (FocusScope.of(context).hasFocus) {
+                      FocusScope.of(context).unfocus();
+                    }
                   },
                   decoration: InputDecoration(
-                    hintText: widget.placeholder,
+                    hintText: placeholder,
                     hintStyle: cBodyTextStyle.copyWith(color: AppColors.gray),
                     filled: true,
                     fillColor:
@@ -67,10 +71,17 @@ class _CTextFieldState extends State<CTextField> {
                     errorBorder: buildStadiumBorder(),
                     errorStyle: cSmallBodyTextStyle.copyWith(
                         color: AppColors.danger, height: 1),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 16,
-                    ),
+                    contentPadding: !hasSuffixWidget!
+                        ? const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 16,
+                          )
+                        : const EdgeInsets.only(
+                            top: 16,
+                            bottom: 16,
+                            left: 24,
+                            right: 56,
+                          ),
                   ),
                 ),
               ],

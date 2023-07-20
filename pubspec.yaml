@@ -33,7 +33,7 @@ flutter:
           - asset: assets/fonts/GeneralSans-Regular.otf
             weight: 400
           - asset: assets/fonts/GeneralSans-Medium.otf
-            weight: 500
-          - asset: assets/fonts/GeneralSans-Bold.otf
             weight: 600
+          - asset: assets/fonts/GeneralSans-Bold.otf
+            weight: 800
           

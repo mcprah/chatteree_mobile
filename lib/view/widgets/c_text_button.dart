@@ -46,7 +46,8 @@ class CTextButton extends StatelessWidget {
                 ),
         ),
       ),
-      child: Padding(
+      child: Container(
+        constraints: const BoxConstraints(minWidth: double.infinity),
         padding: EdgeInsets.only(
           left: size == CSize.SM
               ? prefixIcon != null
@@ -67,6 +68,7 @@ class CTextButton extends StatelessWidget {
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (prefixIcon != null)
               Row(

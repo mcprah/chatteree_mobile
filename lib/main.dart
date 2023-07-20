@@ -1,9 +1,10 @@
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/c_button.dart';
-import 'package:chatteree_mobile/view/components/c_dropdown.dart';
-import 'package:chatteree_mobile/view/components/c_textfield.dart';
+import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
+import 'package:chatteree_mobile/view/widgets/c_text_button.dart';
+import 'package:chatteree_mobile/view/widgets/c_dropdown.dart';
+import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -74,12 +75,12 @@ class MyApp extends StatelessWidget {
                       const SizedBox(
                         height: 12,
                       ),
-                      CButton(
-                        text: "Submit",
+                      CTextButton(
+                        text: "Button",
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {}
                         },
-                      ),
+                      )
                     ],
                   ),
                 ),

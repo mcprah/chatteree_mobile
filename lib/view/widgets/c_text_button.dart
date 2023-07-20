@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 
-class CButton extends StatelessWidget {
+class CTextButton extends StatelessWidget {
   final String text;
   final CSize? size;
   final Widget? prefixIcon;
@@ -12,7 +12,7 @@ class CButton extends StatelessWidget {
   final bool disabled;
   final CButtonType type;
 
-  const CButton({
+  const CTextButton({
     super.key,
     required this.text,
     this.prefixIcon,

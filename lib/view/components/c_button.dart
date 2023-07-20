@@ -1,8 +1,17 @@
-import 'package:chatteree_mobile/utils/colors.dart';
-import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:flutter/material.dart';
 
+import 'package:chatteree_mobile/utils/colors.dart';
+import 'package:chatteree_mobile/utils/constants.dart';
+
 class CButton extends StatelessWidget {
+  final String text;
+  final CSize? size;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final VoidCallback onPressed;
+  final bool disabled;
+  final CButtonType type;
+
   const CButton({
     super.key,
     required this.text,
@@ -13,14 +22,6 @@ class CButton extends StatelessWidget {
     this.disabled = false,
     this.type = CButtonType.PRIMARY,
   });
-
-  final String text;
-  final CSize? size;
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
-  final VoidCallback onPressed;
-  final bool disabled;
-  final CButtonType type;
 
   @override
   Widget build(BuildContext context) {

@@ -1,19 +1,22 @@
-import 'package:chatteree_mobile/utils/colors.dart';
-import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:flutter/material.dart';
 
+import 'package:chatteree_mobile/utils/colors.dart';
+import 'package:chatteree_mobile/utils/theme.dart';
+
 class CTextField extends StatefulWidget {
-  const CTextField({
+
+  final String placeholder;
+  final String? label;
+  final String? Function(String?)? validator;
+  final TextEditingController textController;
+
+    const CTextField({
     super.key,
     this.label,
     this.placeholder = "Enter text",
     this.validator,
     required this.textController,
   });
-  final String placeholder;
-  final String? label;
-  final String? Function(String?)? validator;
-  final TextEditingController textController;
 
   @override
   State<CTextField> createState() => _CTextFieldState();

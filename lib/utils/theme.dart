@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 ///
 /// TextStyles
-/// 
+///
 
 TextStyle cBodyTextStyle = const TextStyle(
   color: AppColors.primary,
@@ -25,7 +25,7 @@ TextStyle cSubText = const TextStyle(
 
 ///
 /// Input Styles
-/// 
+///
 
 InputBorder buildAccentStadiumBorder() {
   return OutlineInputBorder(
@@ -48,3 +48,21 @@ InputBorder buildStadiumBorder() {
     ),
   );
 }
+
+InputDecoration cDefaultInputDecoration = InputDecoration(
+  hintStyle: cBodyTextStyle.copyWith(color: AppColors.gray),
+  filled: true,
+  fillColor: AppColors.secondaryLight,
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(30),
+    borderSide: const BorderSide(color: Colors.transparent),
+  ),
+  focusedBorder: buildAccentStadiumBorder(),
+  enabledBorder: buildStadiumBorder(),
+  errorBorder: buildStadiumBorder(),
+  errorStyle: cSmallBodyTextStyle.copyWith(color: AppColors.danger, height: 1),
+  contentPadding: const EdgeInsets.symmetric(
+    horizontal: 24,
+    vertical: 16,
+  ),
+);

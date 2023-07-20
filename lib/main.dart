@@ -1,8 +1,9 @@
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/CButton.dart';
-import 'package:chatteree_mobile/view/components/CTextField.dart';
+import 'package:chatteree_mobile/view/components/c_button.dart';
+import 'package:chatteree_mobile/view/components/c_dropdown.dart';
+import 'package:chatteree_mobile/view/components/c_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -64,7 +65,10 @@ class MyApp extends StatelessWidget {
                       const SizedBox(
                         height: 12,
                       ),
-                      CTextField(
+                      CDropdown(
+                        dropdownItems: const ["Maame", "Ama", "Adwoa", "Mansa"],
+                        selectedValue: '',
+                        placeholder: "Select option",
                         textController: TextEditingController(),
                       ),
                       const SizedBox(

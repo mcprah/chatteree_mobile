@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   runApp(const MyApp());
 }
 
@@ -11,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Chatteree',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'GeneralSans',
         bottomSheetTheme: BottomSheetThemeData(
@@ -36,11 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-        ),
-      ),
       body: Container(),
     );
   }

@@ -1,2 +1,3 @@
 enum CSize {SM, MD, L, XL}
 enum CButtonType {PRIMARY, SECONDARY}
+enum CInputType {TEXT, DROPDOWN}

@@ -1,14 +1,8 @@
-import 'package:chatteree_mobile/utils/colors.dart';
-import 'package:chatteree_mobile/utils/constants.dart';
-import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/screens/sign_in.dart';
-import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
-import 'package:chatteree_mobile/view/widgets/c_text_button.dart';
-import 'package:chatteree_mobile/view/widgets/c_dropdown.dart';
-import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
+import 'package:chatteree_mobile/view/screens/auth/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
+
+import 'package:chatteree_mobile/utils/colors.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -20,7 +14,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'Chatteree',
       debugShowCheckedModeBanner: false,
@@ -32,15 +25,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const Scaffold(
-
-        backgroundColor: AppColors.light,
-        body: SafeArea(
-          top: true,
-          bottom: false,
-          child: SignIn(),
-        ),
-      ),
+      home: const SignIn(),
     );
   }
 }

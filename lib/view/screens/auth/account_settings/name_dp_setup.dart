@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/notification.dart';
 import 'package:chatteree_mobile/utils/utils.dart';
+import 'package:chatteree_mobile/view/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -176,12 +177,19 @@ class _NameDPSetupState extends State<NameDPSetup> {
                   height: 42,
                 ),
                 CButton(
-                  disabled: widget.authenticationProvider.verificationCode ==
-                          '' ||
-                      widget.authenticationProvider.verificationCode.length !=
-                          6,
+                  disabled: textEditingController.text.trim().isEmpty,
                   text: "Let’s geauxxxx!",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const ChatScreen();
+                        },
+                      ),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
                 ),
               ],
             ),

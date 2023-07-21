@@ -45,14 +45,14 @@ class _SignInState extends State<SignIn> {
               padding: const EdgeInsets.only(
                 left: 24,
                 right: 24,
-                top: 24,
+                top: 64,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(
                     "assets/images/onboarding-1.png",
-                    width: MediaQuery.of(context).size.height * 0.4,
+                    width: MediaQuery.of(context).size.height * 0.36,
                   ),
                   const SizedBox(
                     height: 42,

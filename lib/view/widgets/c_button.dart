@@ -22,7 +22,7 @@ class CButton extends StatelessWidget {
     this.size = CSize.MD,
     this.disabled = false,
     this.type = CButtonType.PRIMARY,
-    this.minWidth,
+    this.minWidth = 80,
   });
 
   @override

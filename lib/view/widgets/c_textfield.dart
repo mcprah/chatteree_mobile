@@ -12,6 +12,8 @@ class CTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Widget? prefix;
   final Widget? suffix;
+  final int? maxLength;
+  final void Function(String)? onChanged;
 
   const CTextField({
     super.key,
@@ -23,6 +25,8 @@ class CTextField extends StatelessWidget {
     this.keyboardType,
     this.prefix,
     this.suffix,
+    this.onChanged,
+    this.maxLength,
   });
 
   @override
@@ -60,6 +64,11 @@ class CTextField extends StatelessWidget {
                           FocusScope.of(context).unfocus();
                         }
                       },
+                      maxLength: maxLength,
+                      onChanged: onChanged,
+                      style: cBodyTextStyle.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
                           hintText: placeholder,
                           hintStyle:
@@ -68,6 +77,7 @@ class CTextField extends StatelessWidget {
                           fillColor: hasFocus
                               ? AppColors.light
                               : AppColors.secondaryLight,
+                          counterText: '',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide(
@@ -79,7 +89,9 @@ class CTextField extends StatelessWidget {
                           enabledBorder: buildStadiumBorder(),
                           errorBorder: buildStadiumBorder(),
                           errorStyle: cSmallBodyTextStyle.copyWith(
-                              color: AppColors.danger, height: 1),
+                            color: AppColors.danger,
+                            height: 1,
+                          ),
                           contentPadding: !hasSuffixWidget!
                               ? prefix == null
                                   ? const EdgeInsets.symmetric(
@@ -116,7 +128,7 @@ class CTextField extends StatelessWidget {
                         child: SizedBox(
                           height: 24,
                           width: 24,
-                          child: prefix!,
+                          child: suffix!,
                         ),
                       )
                   ],

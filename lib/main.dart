@@ -1,7 +1,8 @@
+import 'package:chatteree_mobile/providers/authentication.dart';
 import 'package:chatteree_mobile/view/screens/auth/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:provider/provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -13,18 +14,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Chatteree',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'GeneralSans',
-        bottomSheetTheme: BottomSheetThemeData(
-          modalBackgroundColor: Colors.transparent,
-          modalBarrierColor: Colors.black.withOpacity(0.15),
-          elevation: 0,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Chatteree',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'GeneralSans',
+          bottomSheetTheme: BottomSheetThemeData(
+            modalBackgroundColor: Colors.transparent,
+            modalBarrierColor: Colors.black.withOpacity(0.15),
+            elevation: 0,
+          ),
         ),
+        home: const SignIn(),
       ),
-      home: const SignIn(),
     );
   }
 }

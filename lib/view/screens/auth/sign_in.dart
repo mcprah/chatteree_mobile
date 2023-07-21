@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -79,7 +78,7 @@ class _SignInState extends State<SignIn> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const Verify();
+                                return Verify();
                               },
                             ),
                           );

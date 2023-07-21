@@ -1,3 +1,5 @@
+import 'package:chatteree_mobile/providers/authentication.dart';
+import 'package:chatteree_mobile/utils/notification.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/view/components/verification_pin.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
@@ -6,25 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/components/back_button.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
-class Verify extends StatefulWidget {
-  const Verify({super.key});
+class Verify extends StatelessWidget {
+  Verify({super.key});
 
-  @override
-  State<Verify> createState() => _VerifyState();
-}
-
-class _VerifyState extends State<Verify> {
   TextEditingController textEditingController = TextEditingController();
-
-  String currentText = "";
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationProvider authenticationProvider =
+        context.watch<AuthenticationProvider>();
+
     return DefaultLayout(
       screen: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -74,16 +69,21 @@ class _VerifyState extends State<Verify> {
                     const SizedBox(
                       height: 24,
                     ),
-                    VerificationPin(
+                    VerificationPinComponent(
                       textEditingController: textEditingController,
-                      onCompleted: (v) {
-                        print("Completed");
-                        print(v);
+                      onCompleted: (value) {
+                        authenticationProvider.verificationCode = value;
+                        authenticationProvider.validatePin();
+                        
+                        if (!authenticationProvider.isValidCode) {
+                          CNoty.showToast(
+                            message: "Incorrect confirmation code",
+                            color: AppColors.danger,
+                          );
+                        }
                       },
                       onChanged: (value) {
-                        setState(() {
-                          currentText = value;
-                        });
+                        authenticationProvider.verificationCode = value;
                       },
                       beforeTextPaste: (text) {
                         print("Allowing to paste $text");
@@ -115,8 +115,19 @@ class _VerifyState extends State<Verify> {
                           ),
                         ),
                         CButton(
+                          disabled: authenticationProvider.verificationCode ==
+                                  '' ||
+                              authenticationProvider.verificationCode.length !=
+                                  6,
                           text: "Verify",
-                          onPressed: () {},
+                          onPressed: () {
+                            if (!authenticationProvider.isValidCode) {
+                              CNoty.showToast(
+                                message: "Incorrect confirmation code",
+                                color: AppColors.danger,
+                              );
+                            }
+                          },
                           minWidth: 80,
                         ),
                       ],

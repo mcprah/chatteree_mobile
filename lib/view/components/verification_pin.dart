@@ -3,8 +3,8 @@ import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerificationPin extends StatefulWidget {
-  const VerificationPin({
+class VerificationPinComponent extends StatefulWidget {
+  const VerificationPinComponent({
     super.key,
     required this.textEditingController,
     this.beforeTextPaste,
@@ -19,10 +19,10 @@ class VerificationPin extends StatefulWidget {
   final void Function(String)? onCompleted;
 
   @override
-  State<VerificationPin> createState() => _VerificationPinState();
+  State<VerificationPinComponent> createState() => _VerificationPinState();
 }
 
-class _VerificationPinState extends State<VerificationPin> {
+class _VerificationPinState extends State<VerificationPinComponent> {
   @override
   Widget build(BuildContext context) {
     return PinCodeTextField(

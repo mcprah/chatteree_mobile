@@ -70,11 +70,10 @@ class Verify extends StatelessWidget {
                       height: 24,
                     ),
                     VerificationPinComponent(
+                      // Enter 123456 to verify, any other code will fail
                       textEditingController: textEditingController,
                       onCompleted: (value) {
-                        authenticationProvider.verificationCode = value;
-                        authenticationProvider.validatePin();
-                        
+                        authenticationProvider.validatePin(value);
                         if (!authenticationProvider.isValidCode) {
                           CNoty.showToast(
                             message: "Incorrect confirmation code",

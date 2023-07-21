@@ -17,8 +17,8 @@ class AuthenticationProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void validatePin() {
+  void validatePin(String value) {
+    verificationCode = value;
     isValidCode = verificationCode == "123456";
-    notifyListeners();
   }
 }

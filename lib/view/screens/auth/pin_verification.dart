@@ -104,13 +104,21 @@ class Verify extends StatelessWidget {
                     return;
                   }
 
-                  Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (context) {
-                      return authenticationProvider.isRegisteredUser
-                          ? const ChatScreen()
-                          : const UserSetup();
-                    },
-                  ));
+                  authenticationProvider.isRegisteredUser
+                      ? Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const ChatScreen();
+                            },
+                          ),
+                          (Route<dynamic> route) => false,
+                        )
+                      : Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context) {
+                            return const UserSetup();
+                          },
+                        ));
                 },
                 minWidth: 80,
               ),

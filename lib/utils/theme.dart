@@ -9,24 +9,28 @@ TextStyle cHeading3TextStyle = const TextStyle(
   color: AppColors.primary,
   fontSize: 22,
   fontWeight: FontWeight.w600,
+  fontFamily: "GeneralSans",
 );
 
 TextStyle cBodyTextStyle = const TextStyle(
   color: AppColors.primary,
   fontSize: 15,
   fontWeight: FontWeight.normal,
+  fontFamily: "GeneralSans",
 );
 
 TextStyle cSmallBodyTextStyle = const TextStyle(
   color: AppColors.primary,
   fontSize: 12,
   fontWeight: FontWeight.normal,
+  fontFamily: "GeneralSans",
 );
 
 TextStyle cSubText = const TextStyle(
   color: AppColors.primary,
   fontSize: 14,
   fontWeight: FontWeight.normal,
+  fontFamily: "GeneralSans",
 );
 
 ///
@@ -72,5 +76,3 @@ InputBorder buildStadiumBorder() {
     ),
   );
 }
-
-

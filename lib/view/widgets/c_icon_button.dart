@@ -32,6 +32,7 @@ class CIconButton extends StatelessWidget {
             child: Center(
               child: SvgPicture.asset(
                 svgIconPath,
+                // ignore: deprecated_member_use
                 color: AppColors.accent,
               ),
             ),

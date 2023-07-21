@@ -1,13 +1,12 @@
-import 'package:chatteree_mobile/utils/colors.dart';
-import 'package:chatteree_mobile/view/screens/auth/layout/default.dart';
-import 'package:chatteree_mobile/view/screens/auth/verify.dart';
-import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/components/email_text_field.dart';
 import 'package:chatteree_mobile/view/components/google_signin_button.dart';
+import 'package:chatteree_mobile/view/screens/layout/default.dart';
+import 'package:chatteree_mobile/view/screens/auth/pin_verification.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});

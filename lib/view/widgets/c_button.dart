@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 
-class CTextButton extends StatelessWidget {
+class CButton extends StatelessWidget {
   final String text;
   final CSize? size;
   final Widget? prefixIcon;
@@ -11,8 +11,9 @@ class CTextButton extends StatelessWidget {
   final VoidCallback onPressed;
   final bool disabled;
   final CButtonType type;
+  final double? minWidth;
 
-  const CTextButton({
+  const CButton({
     super.key,
     required this.text,
     this.prefixIcon,
@@ -21,6 +22,7 @@ class CTextButton extends StatelessWidget {
     this.size = CSize.MD,
     this.disabled = false,
     this.type = CButtonType.PRIMARY,
+    this.minWidth,
   });
 
   @override
@@ -47,7 +49,7 @@ class CTextButton extends StatelessWidget {
         ),
       ),
       child: Container(
-        constraints: const BoxConstraints(minWidth: double.infinity),
+        constraints: BoxConstraints(minWidth: minWidth ?? double.infinity),
         padding: EdgeInsets.only(
           left: size == CSize.SM
               ? prefixIcon != null
@@ -85,6 +87,7 @@ class CTextButton extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: size == CSize.SM ? 14 : 15,
+                fontFamily: "GeneralSans",
                 color: type == CButtonType.PRIMARY
                     ? !disabled
                         ? AppColors.accent

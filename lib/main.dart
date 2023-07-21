@@ -2,7 +2,6 @@ import 'package:chatteree_mobile/view/screens/auth/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:chatteree_mobile/utils/colors.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);

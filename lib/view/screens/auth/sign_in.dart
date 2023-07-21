@@ -87,11 +87,7 @@ class _SignInState extends State<SignIn> {
                       const SizedBox(
                         height: 24,
                       ),
-                      GoogleSignInButton(
-                        onPressed: () {
-                          // process goodle signin
-                        },
-                      )
+                      const GoogleSignInButton()
                     ],
                   )
                 ],

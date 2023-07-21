@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:chatteree_mobile/utils/constants.dart';
+import 'package:chatteree_mobile/utils/notification.dart';
+import 'package:chatteree_mobile/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -7,6 +11,7 @@ import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
 import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
+import 'package:image_picker/image_picker.dart';
 
 class NameDPSetup extends StatefulWidget {
   const NameDPSetup({
@@ -25,6 +30,7 @@ class NameDPSetup extends StatefulWidget {
 class _NameDPSetupState extends State<NameDPSetup> {
   int charInputLimit = 18;
   late int remainingText;
+  File? imageFile;
   TextEditingController textEditingController = TextEditingController();
 
   void calculateRemasiningChars({
@@ -83,35 +89,59 @@ class _NameDPSetupState extends State<NameDPSetup> {
                           borderRadius: BorderRadius.circular(165),
                         ),
                         clipBehavior: Clip.hardEdge,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              bottom: -12,
-                              right: -8,
-                              child: Container(
-                                width: 126,
-                                height: 126,
-                                decoration: BoxDecoration(
-                                  color: AppColors.accentBold,
-                                  borderRadius: BorderRadius.circular(120),
-                                ),
+                        child: imageFile != null
+                            ? CircleAvatar(
+                                foregroundColor: AppColors.gray,
+                                backgroundImage: AssetImage(imageFile!.path),
+                                onBackgroundImageError:
+                                    (exception, stackTrace) {
+                                  debugPrint(
+                                      'image issue, $exception,$stackTrace');
+                                  setState(() {
+                                    imageFile = null;
+                                  });
+                                },
+                              )
+                            : Stack(
+                                children: [
+                                  Positioned(
+                                    bottom: -12,
+                                    right: -8,
+                                    child: Container(
+                                      width: 126,
+                                      height: 126,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.accentBold,
+                                        borderRadius:
+                                            BorderRadius.circular(120),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                     Positioned(
                       bottom: -4,
                       child: CButton(
                         text: "Upload photo",
-                        onPressed: () {},
+                        onPressed: () async {
+                          imageFile = await Utils.getFromGallery();
+                          if (imageFile == null) {
+                            CNoty.showToast(
+                              message: 'Image not set',
+                              color: AppColors.danger,
+                            );
+                          }
+                          setState(() {});
+                        },
                         type: CButtonType.SECONDARY,
                         size: CSize.SM,
                         minWidth: 80,
                         prefixIcon: SvgPicture.asset(
                           "assets/icons/icon/media/image.svg",
-                          height: 24,
+                          height: 20,
+                          width: 20,
                         ),
                       ),
                     )

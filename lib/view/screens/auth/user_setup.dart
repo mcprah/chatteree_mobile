@@ -1,10 +1,10 @@
-import 'package:chatteree_mobile/view/screens/auth/profile/name_dp_setup.dart';
+import 'package:chatteree_mobile/view/screens/auth/account_settings/name_dp_setup.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:chatteree_mobile/providers/authentication.dart';
-import 'package:chatteree_mobile/view/screens/auth/profile/username_setup.dart';
+import 'package:chatteree_mobile/view/screens/auth/account_settings/username_setup.dart';
 
 class UserSetup extends StatelessWidget {
   const UserSetup({super.key});

@@ -11,7 +11,6 @@ import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
 import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
-import 'package:image_picker/image_picker.dart';
 
 class NameDPSetup extends StatefulWidget {
   const NameDPSetup({
@@ -91,7 +90,7 @@ class _NameDPSetupState extends State<NameDPSetup> {
                         clipBehavior: Clip.hardEdge,
                         child: imageFile != null
                             ? CircleAvatar(
-                                foregroundColor: AppColors.gray,
+                                backgroundColor: AppColors.gray,
                                 backgroundImage: AssetImage(imageFile!.path),
                                 onBackgroundImageError:
                                     (exception, stackTrace) {

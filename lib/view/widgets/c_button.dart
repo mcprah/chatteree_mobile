@@ -35,8 +35,11 @@ class CButton extends StatelessWidget {
                 ? AppColors.gray
                 : null
             : AppColors.light,
-        backgroundColor:
-            type == CButtonType.PRIMARY ? AppColors.primary : AppColors.light,
+        backgroundColor: type == CButtonType.PRIMARY
+            ? AppColors.primary
+            : type == CButtonType.ACCENT
+                ? AppColors.accent
+                : AppColors.light,
         shadowColor: Colors.transparent,
         elevation: 0,
         shape: StadiumBorder(

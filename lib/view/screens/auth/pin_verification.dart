@@ -2,6 +2,7 @@ import 'package:chatteree_mobile/providers/authentication.dart';
 import 'package:chatteree_mobile/utils/notification.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/view/components/verification_pin.dart';
+import 'package:chatteree_mobile/view/screens/auth/user_setup.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
 import 'package:flutter/material.dart';
 
@@ -125,7 +126,14 @@ class Verify extends StatelessWidget {
                                 message: "Incorrect confirmation code",
                                 color: AppColors.danger,
                               );
+                              return;
                             }
+
+                            Navigator.pushReplacement(context, MaterialPageRoute(
+                              builder: (context) {
+                                return UserSetup();
+                              },
+                            ));
                           },
                           minWidth: 80,
                         ),

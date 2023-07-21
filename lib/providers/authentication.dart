@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 
 class AuthenticationProvider with ChangeNotifier {
+  String _email = '';
   String _verificationCode = '';
-  String get verificationCode => _verificationCode;
-
   bool _isValidCode = false;
+
+  String get email => _email;
+  String get verificationCode => _verificationCode;
   bool get isValidCode => _isValidCode;
 
-  set isValidCode(bool value) {
-    _isValidCode = value;
-    notifyListeners();
+
+  set email(String value) {
+    _email = value;
   }
 
   set verificationCode(String value) {
     _verificationCode = value;
-    notifyListeners();
+    // notifyListeners();
+  }
+
+  set isValidCode(bool value) {
+    _isValidCode = value;
+    // notifyListeners();
   }
 
   void validatePin(String value) {

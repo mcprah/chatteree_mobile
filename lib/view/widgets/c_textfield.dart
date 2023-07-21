@@ -10,6 +10,8 @@ class CTextField extends StatelessWidget {
   final TextEditingController textController;
   final bool? hasSuffixWidget;
   final TextInputType? keyboardType;
+  final Widget? prefix;
+  final Widget? suffix;
 
   const CTextField({
     super.key,
@@ -19,6 +21,8 @@ class CTextField extends StatelessWidget {
     required this.textController,
     this.hasSuffixWidget = false,
     this.keyboardType,
+    this.prefix,
+    this.suffix,
   });
 
   @override
@@ -41,48 +45,81 @@ class CTextField extends StatelessWidget {
                       style: cSubText.copyWith(color: AppColors.gray),
                     ),
                   ),
-                TextFormField(
-                  controller: textController,
-                  keyboardType: keyboardType ?? TextInputType.text,
-                  cursorColor: AppColors.primary,
-                  validator: (value) {
-                    String? error = validator?.call(value);
-                    return error;
-                  },
-                  onTapOutside: (e) {
-                    if (FocusScope.of(context).hasFocus) {
-                      FocusScope.of(context).unfocus();
-                    }
-                  },
-                  decoration: InputDecoration(
-                    hintText: placeholder,
-                    hintStyle: cBodyTextStyle.copyWith(color: AppColors.gray),
-                    filled: true,
-                    fillColor:
-                        hasFocus ? AppColors.light : AppColors.secondaryLight,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                          color:
-                              hasFocus ? Colors.transparent : AppColors.accent),
-                    ),
-                    focusedBorder: buildAccentStadiumBorder(),
-                    enabledBorder: buildStadiumBorder(),
-                    errorBorder: buildStadiumBorder(),
-                    errorStyle: cSmallBodyTextStyle.copyWith(
-                        color: AppColors.danger, height: 1),
-                    contentPadding: !hasSuffixWidget!
-                        ? const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 16,
-                          )
-                        : const EdgeInsets.only(
-                            top: 16,
-                            bottom: 16,
-                            left: 24,
-                            right: 56,
+                Stack(
+                  children: [
+                    TextFormField(
+                      controller: textController,
+                      keyboardType: keyboardType ?? TextInputType.text,
+                      cursorColor: AppColors.primary,
+                      validator: (value) {
+                        String? error = validator?.call(value);
+                        return error;
+                      },
+                      onTapOutside: (e) {
+                        if (FocusScope.of(context).hasFocus) {
+                          FocusScope.of(context).unfocus();
+                        }
+                      },
+                      decoration: InputDecoration(
+                          hintText: placeholder,
+                          hintStyle:
+                              cBodyTextStyle.copyWith(color: AppColors.gray),
+                          filled: true,
+                          fillColor: hasFocus
+                              ? AppColors.light
+                              : AppColors.secondaryLight,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(
+                                color: hasFocus
+                                    ? Colors.transparent
+                                    : AppColors.accent),
                           ),
-                  ),
+                          focusedBorder: buildAccentStadiumBorder(),
+                          enabledBorder: buildStadiumBorder(),
+                          errorBorder: buildStadiumBorder(),
+                          errorStyle: cSmallBodyTextStyle.copyWith(
+                              color: AppColors.danger, height: 1),
+                          contentPadding: !hasSuffixWidget!
+                              ? prefix == null
+                                  ? const EdgeInsets.symmetric(
+                                      horizontal: 24,
+                                      vertical: 16,
+                                    )
+                                  : const EdgeInsets.only(
+                                      top: 16,
+                                      bottom: 16,
+                                      right: 24,
+                                      left: 48,
+                                    )
+                              : const EdgeInsets.only(
+                                  top: 16,
+                                  bottom: 16,
+                                  left: 24,
+                                  right: 56,
+                                )),
+                    ),
+                    if (prefix != null)
+                      Positioned(
+                        top: 14,
+                        left: 14,
+                        child: SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: prefix!,
+                        ),
+                      ),
+                    if (suffix != null)
+                      Positioned(
+                        top: 14,
+                        right: 14,
+                        child: SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: prefix!,
+                        ),
+                      )
+                  ],
                 ),
               ],
             );

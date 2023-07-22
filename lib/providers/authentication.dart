@@ -5,11 +5,13 @@ class AuthenticationProvider with ChangeNotifier {
   String _verificationCode = '';
   bool _isValidCode = false;
   bool _isRegisteredUser = true;
+  bool _isFirstTimeUser = false;
 
   String get email => _email;
   String get verificationCode => _verificationCode;
   bool get isValidCode => _isValidCode;
   bool get isRegisteredUser => _isRegisteredUser;
+  bool get isFirstTimeUser => _isFirstTimeUser;
 
   set email(String value) {
     _email = value;
@@ -17,6 +19,11 @@ class AuthenticationProvider with ChangeNotifier {
 
   set verificationCode(String value) {
     _verificationCode = value;
+    notifyListeners();
+  }
+
+  set isFirstTimeUser(bool value) {
+    _isFirstTimeUser = value;
     notifyListeners();
   }
 

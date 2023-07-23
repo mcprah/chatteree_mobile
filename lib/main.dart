@@ -1,4 +1,5 @@
 import 'package:chatteree_mobile/providers/authentication.dart';
+import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:chatteree_mobile/view/screens/auth/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
+        ChangeNotifierProvider(create: (_) => MessageProvider()),
       ],
       child: MaterialApp(
         title: 'Chatteree',

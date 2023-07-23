@@ -111,7 +111,7 @@ class _NameDPSetupState extends State<NameDPSetup> {
                                       width: 126,
                                       height: 126,
                                       decoration: BoxDecoration(
-                                        color: AppColors.accentBold,
+                                        color: AppColors.accentDark,
                                         borderRadius:
                                             BorderRadius.circular(120),
                                       ),

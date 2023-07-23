@@ -1,6 +1,7 @@
-import 'package:chatteree_mobile/providers/authentication.dart';
+import 'package:chatteree_mobile/providers/authentication_provider.dart';
 import 'package:chatteree_mobile/utils/notification.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
+import 'package:chatteree_mobile/view/components/commons/back_button.dart';
 import 'package:chatteree_mobile/view/components/profile_pic.dart';
 import 'package:chatteree_mobile/view/components/verification_pin.dart';
 import 'package:chatteree_mobile/view/screens/auth/user_setup.dart';
@@ -9,7 +10,6 @@ import 'package:chatteree_mobile/view/widgets/c_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/back_button.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:provider/provider.dart';
 

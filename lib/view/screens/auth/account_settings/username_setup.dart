@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:chatteree_mobile/providers/authentication.dart';
+import 'package:chatteree_mobile/providers/authentication_provider.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';

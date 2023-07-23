@@ -5,7 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import 'package:chatteree_mobile/providers/authentication.dart';
+import 'package:chatteree_mobile/providers/authentication_provider.dart';
 import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';

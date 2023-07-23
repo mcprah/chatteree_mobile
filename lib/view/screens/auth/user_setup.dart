@@ -3,7 +3,7 @@ import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:chatteree_mobile/providers/authentication.dart';
+import 'package:chatteree_mobile/providers/authentication_provider.dart';
 import 'package:chatteree_mobile/view/screens/auth/account_settings/username_setup.dart';
 
 class UserSetup extends StatelessWidget {

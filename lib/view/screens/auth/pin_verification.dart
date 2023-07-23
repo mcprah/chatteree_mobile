@@ -183,9 +183,8 @@ class Verify extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              ProfilePic(
-                                imagePath: '',
-                                onImageError: (p0, p1) {},
+                              const ProfilePic(
+                                imagePath: null,
                                 initial: "M",
                               )
                             ],

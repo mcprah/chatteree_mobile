@@ -13,9 +13,8 @@ class ChatHeader extends StatelessWidget {
       children: [
         Row(
           children: [
-            ProfilePic(
-              imagePath: '',
-              onImageError: (p0, p1) {},
+           const ProfilePic(
+              imagePath: null,
               initial: "M",
               minRadius: 20,
               fontSize: 18,

@@ -1,5 +1,6 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:chatteree_mobile/utils/colors.dart';
-import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
 import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

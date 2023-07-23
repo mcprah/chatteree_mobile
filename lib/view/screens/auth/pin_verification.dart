@@ -14,9 +14,9 @@ import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:provider/provider.dart';
 
 class Verify extends StatelessWidget {
-  Verify({super.key});
+  const Verify({super.key});
 
-  TextEditingController textEditingController = TextEditingController();
+  static TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

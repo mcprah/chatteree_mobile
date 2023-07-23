@@ -14,7 +14,7 @@ class ProfilePic extends StatelessWidget {
     this.isOnline = false,
     this.showStatusIndicator = false,
   });
-  final String imagePath;
+  final String? imagePath;
   final void Function()? onTap;
   final void Function(Object, StackTrace?)? onImageError;
   final String? initial;
@@ -31,10 +31,11 @@ class ProfilePic extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: AppColors.accentDark,
-            backgroundImage: NetworkImage(imagePath),
+            backgroundImage:
+                imagePath != null ? NetworkImage(imagePath!) : null,
             onBackgroundImageError: onImageError,
             minRadius: minRadius ?? 34,
-            child: imagePath == ""
+            child: imagePath == null
                 ? initial != null || imagePath == ""
                     ? Text(
                         initial!,

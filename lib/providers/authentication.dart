@@ -29,7 +29,7 @@ class AuthenticationProvider with ChangeNotifier {
 
   set isValidCode(bool value) {
     _isValidCode = value;
-    // notifyListeners();
+    notifyListeners();
   }
 
   set isRegisteredUser(bool value) {

@@ -161,7 +161,7 @@ class _NameDPSetupState extends State<NameDPSetup> {
                         charCount: textEditingController.text.length,
                         charInputLimit: charInputLimit,
                       );
-                    } else if (val.length == 0) {
+                    } else if (val.isEmpty) {
                       remainingText = charInputLimit;
                       setState(() {});
                     }

@@ -27,7 +27,10 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
-        profileImageUrl: json["profile_image"],
+        profileImageUrl:
+            json["profile_image_url"] != "" 
+                ? json["profile_image_url"]
+                : null,
         username: json["username"],
         email: json["email"],
         name: json["name"],
@@ -36,7 +39,7 @@ class User {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "profile_image": profileImageUrl,
+        "profile_image_url": profileImageUrl,
         "username": username,
         "email": email,
         "name": name,

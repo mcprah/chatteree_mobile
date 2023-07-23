@@ -1,20 +1,16 @@
-import 'package:chatteree_mobile/models/message_model.dart';
-import 'package:chatteree_mobile/models/user_model.dart';
-import 'package:chatteree_mobile/providers/message_provider.dart';
-import 'package:chatteree_mobile/repositories/message_repository.dart';
-import 'package:chatteree_mobile/view/components/user_chat_message.dart';
-import 'package:chatteree_mobile/view/widgets/c_badge.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:badges/badges.dart' as badges;
 
 import 'package:chatteree_mobile/providers/authentication.dart';
-import 'package:chatteree_mobile/utils/colors.dart';
+import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/chat_header.dart';
+import 'package:chatteree_mobile/view/components/chat/chat_list.dart';
+import 'package:chatteree_mobile/view/components/chat/chat_header.dart';
 import 'package:chatteree_mobile/view/components/search_bar.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
@@ -58,20 +54,8 @@ class _ChatScreenState extends State<ChatScreen> {
           height: 60,
           width: double.infinity,
         ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: messageProvider.userMessageList.length,
-            itemBuilder: (BuildContext context, int index) {
-              Message userMessage = messageProvider.userMessageList[index];
-
-              return UserMessage(
-                from: userMessage.from,
-                dateTime: userMessage.dateTime ?? "",
-                unreadCount: userMessage.unreadCount,
-                messageSnippet: userMessage.messageSnippet,
-              );
-            },
-          ),
+        const Expanded(
+          child: ChatList(),
         ),
       ],
     );

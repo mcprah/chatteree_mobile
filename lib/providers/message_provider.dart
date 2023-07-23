@@ -23,7 +23,6 @@ class MessageProvider with ChangeNotifier {
       return messageFromJson(jsonMessage);
     }).toList();
 
-    print("messageList: $messageList");
     userMessageList = messageList;
   }
 }

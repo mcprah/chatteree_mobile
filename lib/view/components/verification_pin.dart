@@ -48,6 +48,7 @@ class _VerificationPinState extends State<VerificationPinComponent> {
         } else {
           return null;
         }
+        return null;
       },
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,

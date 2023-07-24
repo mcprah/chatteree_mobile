@@ -28,7 +28,7 @@ class UserFilm extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: hasUnviewedFilm! ? AppColors.accent : AppColors.gray,
+                color: hasUnviewedFilm! ? AppColors.accent : AppColors.secondaryLight2,
                 width: 4,
               ),
               borderRadius: BorderRadius.circular(80),

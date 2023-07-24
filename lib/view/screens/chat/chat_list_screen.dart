@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -138,7 +137,9 @@ class _ChatScreenState extends State<ChatListScreen> {
         ),
         CButton(
           text: "Start Chatting",
-          onPressed: () {},
+          onPressed: () {
+            authenticationProvider.isFirstTimeUser = false;
+          },
           type: CButtonType.ACCENT,
           prefixIcon: SvgPicture.asset(
             "assets/icons/icon/interfaces/edit-square-feather.svg",

@@ -1,5 +1,6 @@
 
 
+import 'package:chatteree_mobile/view/components/commons/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +12,6 @@ import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/components/chat/chat_list.dart';
 import 'package:chatteree_mobile/view/components/chat/chat_header.dart';
-import 'package:chatteree_mobile/view/components/search_bar.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
 

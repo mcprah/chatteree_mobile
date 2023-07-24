@@ -1,9 +1,9 @@
+import 'package:chatteree_mobile/view/components/commons/email_text_field.dart';
+import 'package:chatteree_mobile/view/components/commons/google_signin_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/email_text_field.dart';
-import 'package:chatteree_mobile/view/components/google_signin_button.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:chatteree_mobile/view/screens/auth/pin_verification.dart';
 

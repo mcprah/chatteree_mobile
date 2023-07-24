@@ -1,7 +1,7 @@
 import 'package:chatteree_mobile/models/user_model.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/profile_pic.dart';
+import 'package:chatteree_mobile/view/components/commons/profile_pic.dart';
 import 'package:chatteree_mobile/view/widgets/c_badge.dart';
 import 'package:flutter/material.dart';
 

@@ -1,9 +1,10 @@
+import 'package:chatteree_mobile/view/components/commons/profile_pic.dart';
+import 'package:flutter/material.dart';
+
 import 'package:chatteree_mobile/models/user_model.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/commons/profile_pic.dart';
 import 'package:chatteree_mobile/view/widgets/c_badge.dart';
-import 'package:flutter/material.dart';
 
 class UserMessage extends StatelessWidget {
   const UserMessage({
@@ -38,6 +39,7 @@ class UserMessage extends StatelessWidget {
               fontSize: 18,
               showStatusIndicator: true,
               isOnline: from.onlineStatus!,
+              backgroundColor: AppColors.gray,
             ),
             const SizedBox(
               width: 16,

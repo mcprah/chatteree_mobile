@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/notification.dart';
 import 'package:chatteree_mobile/utils/utils.dart';
-import 'package:chatteree_mobile/view/screens/chat/chat_screen.dart';
+import 'package:chatteree_mobile/view/screens/chat/chat_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -184,7 +184,7 @@ class _NameDPSetupState extends State<NameDPSetup> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return const ChatScreen();
+                          return const ChatListScreen();
                         },
                       ),
                       (Route<dynamic> route) => false,

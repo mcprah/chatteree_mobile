@@ -5,7 +5,7 @@ import 'package:chatteree_mobile/view/components/commons/back_button.dart';
 import 'package:chatteree_mobile/view/components/commons/profile_pic.dart';
 import 'package:chatteree_mobile/view/components/commons/verification_pin.dart';
 import 'package:chatteree_mobile/view/screens/auth/user_setup.dart';
-import 'package:chatteree_mobile/view/screens/chat/chat_screen.dart';
+import 'package:chatteree_mobile/view/screens/chat/chat_list_screen.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
 import 'package:flutter/material.dart';
 
@@ -109,7 +109,7 @@ class Verify extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const ChatScreen();
+                              return const ChatListScreen();
                             },
                           ),
                           (Route<dynamic> route) => false,

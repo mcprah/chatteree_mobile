@@ -13,18 +13,22 @@ class ChatList extends StatelessWidget {
     MessageProvider messageProvider = context.watch<MessageProvider>();
 
     return ListView.builder(
+
       itemCount: messageProvider.userMessageList.length,
       itemBuilder: (BuildContext context, int index) {
         Message userMessage = messageProvider.userMessageList[index];
 
-        return UserMessage(
-          from: userMessage.from,
-          dateTime: userMessage.dateTime ?? "",
-          unreadCount: userMessage.unreadCount,
-          messageSnippet: userMessage.messageSnippet,
-          onTap: () {
-            print("userMessage: ${userMessage.toJson()}");
-          },
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: UserMessage(
+            from: userMessage.from,
+            dateTime: userMessage.dateTime ?? "",
+            unreadCount: userMessage.unreadCount,
+            messageSnippet: userMessage.messageSnippet,
+            onTap: () {
+              print("userMessage: ${userMessage.toJson()}");
+            },
+          ),
         );
       },
     );

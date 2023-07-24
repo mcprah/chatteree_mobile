@@ -13,6 +13,7 @@ class ProfilePic extends StatelessWidget {
     this.fontSize,
     this.isOnline = false,
     this.showStatusIndicator = false,
+    this.backgroundColor,
   });
   final String? imagePath;
   final void Function()? onTap;
@@ -22,6 +23,7 @@ class ProfilePic extends StatelessWidget {
   final double? fontSize;
   final bool isOnline;
   final bool showStatusIndicator;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ProfilePic extends StatelessWidget {
       child: Stack(
         children: [
           CircleAvatar(
-            backgroundColor: AppColors.accentDark,
+            backgroundColor: backgroundColor ?? AppColors.accentDark,
             backgroundImage:
                 imagePath != null ? NetworkImage(imagePath!) : null,
             onBackgroundImageError: onImageError,

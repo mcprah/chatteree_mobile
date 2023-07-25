@@ -31,14 +31,14 @@ class Verify extends StatelessWidget {
           ),
           RichText(
             text: TextSpan(
-              text: "Enter the confirmation code sent to",
+              text: "Enter the confirmation code sent to ",
               style: cBodyTextStyle,
-              children: const [
+              children: [
                 TextSpan(
-                    text: " kwesiokyere@gmail.com ",
-                    style: TextStyle(fontWeight: FontWeight.w500)),
-                TextSpan(
-                  text: "to verify that it is you.",
+                    text: authenticationProvider.userData!.email,
+                    style: const TextStyle(fontWeight: FontWeight.w500)),
+                const TextSpan(
+                  text: " to verify that it is you.",
                 )
               ],
             ),
@@ -172,7 +172,7 @@ class Verify extends StatelessWidget {
                                     height: 4,
                                   ),
                                   Text(
-                                    "@nkayyjo",
+                                    authenticationProvider.userData!.username!,
                                     style: cBodyTextStyle.copyWith(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
@@ -183,9 +183,11 @@ class Verify extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const ProfilePic(
-                                imagePath: null,
-                                initial: "M",
+                              ProfilePic(
+                                imagePath: authenticationProvider
+                                    .userData!.profileImageUrl!,
+                                initial:
+                                    authenticationProvider.userData!.name![0],
                               )
                             ],
                           )

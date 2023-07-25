@@ -5,13 +5,14 @@ class AuthenticationProvider with ChangeNotifier {
   String _email = '';
   String _verificationCode = '';
   bool _isValidCode = false;
-  bool _isRegisteredUser = true;
-  bool _isFirstTimeUser = false;
+  bool _isRegisteredUser = false;
+  bool _isFirstTimeUser = true;
   User? _userData = User(
     id: 123,
     profileImageUrl: "https://i.pravatar.cc/150?u=a042581fjjf9022314d",
     username: "@mcprah",
     name: "Mark",
+    email: "mcprah@gmail.com",
     onlineStatus: true,
   );
 

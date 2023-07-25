@@ -1,12 +1,12 @@
-import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/components/commons/profile_pic.dart';
 import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
-import 'package:provider/provider.dart';
 
 class ChatHeader extends StatefulWidget {
   const ChatHeader({super.key});
@@ -23,6 +23,7 @@ class _ChatHeaderState extends State<ChatHeader> {
   @override
   Widget build(BuildContext context) {
     MessageProvider messageProvider = context.watch<MessageProvider>();
+
 
     return Container(
       padding: const EdgeInsets.only(

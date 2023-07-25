@@ -54,7 +54,7 @@ class ChatBubble extends StatelessWidget {
                     : CrossAxisAlignment.start,
                 children: [
                   Text(
-                    dateTime ?? '',
+                    dateTime,
                     style: cSmallBodyTextStyle.copyWith(
                       color: messageFromUser
                           ? AppColors.light

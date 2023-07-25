@@ -11,6 +11,7 @@ class AuthenticationProvider with ChangeNotifier {
     id: 123,
     profileImageUrl: "https://i.pravatar.cc/150?u=a042581fjjf9022314d",
     username: "@mcprah",
+    name: "Mark",
     onlineStatus: true,
   );
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:chatteree_mobile/view/components/chat/chat_conversation.dart';
 import 'package:chatteree_mobile/view/components/chat/chat_footer.dart';
 import 'package:chatteree_mobile/view/components/chat/chat_header.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
@@ -17,33 +18,37 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      screen: LayoutBuilder(builder: (context, constraints) {
-        return Container(
-          constraints: BoxConstraints(
-            maxWidth: constraints.maxWidth,
-            maxHeight: constraints.maxHeight,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const ChatHeader(),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Placeholder(),
-                    ),
-                    ChatFooter(
-                      textEditingController: textEditingController,
-                    ),
-                  ],
+      screen: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // _____ Chat screen header _____ //
+          const ChatHeader(),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                // _____ Conversation _____ //
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ) +
+                        const EdgeInsets.only(bottom: 24),
+                    width: double.infinity,
+                    child: const ChatConversation(),
+                  ),
                 ),
-              )
-            ],
-          ),
-        );
-      }),
+
+                // _____ Chat footer _____ //
+                ChatFooter(
+                  textEditingController: textEditingController,
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

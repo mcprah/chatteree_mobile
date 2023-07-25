@@ -4,7 +4,7 @@ class AuthenticationProvider with ChangeNotifier {
   String _email = '';
   String _verificationCode = '';
   bool _isValidCode = false;
-  bool _isRegisteredUser = true;
+  bool _isRegisteredUser = false;
   bool _isFirstTimeUser = false;
 
   String get email => _email;

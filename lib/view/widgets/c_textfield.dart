@@ -13,6 +13,7 @@ class CTextField extends StatelessWidget {
   final Widget? prefix;
   final Widget? suffix;
   final int? maxLength;
+  final int? maxLines;
   final void Function(String)? onChanged;
 
   const CTextField({
@@ -27,6 +28,7 @@ class CTextField extends StatelessWidget {
     this.suffix,
     this.onChanged,
     this.maxLength,
+    this.maxLines = 1,
   });
 
   @override
@@ -64,56 +66,60 @@ class CTextField extends StatelessWidget {
                           FocusScope.of(context).unfocus();
                         }
                       },
+                      maxLines: maxLines,
                       maxLength: maxLength,
                       onChanged: onChanged,
                       style: cBodyTextStyle.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
                       decoration: InputDecoration(
-                          hintText: placeholder,
-                          hintStyle:
-                              cBodyTextStyle.copyWith(color: AppColors.gray),
-                          filled: true,
-                          fillColor: hasFocus
-                              ? AppColors.light
-                              : AppColors.secondaryLight,
-                          counterText: '',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(
-                                color: hasFocus
-                                    ? Colors.transparent
-                                    : AppColors.accent),
+                        hintText: placeholder,
+                        hintStyle:
+                            cBodyTextStyle.copyWith(color: AppColors.gray),
+                        filled: true,
+                        fillColor: hasFocus
+                            ? AppColors.light
+                            : AppColors.secondaryLight,
+                        counterText: '',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                            color: hasFocus
+                                ? Colors.transparent
+                                : AppColors.accent,
                           ),
-                          focusedBorder: buildAccentStadiumBorder(),
-                          enabledBorder: buildStadiumBorder(),
-                          errorBorder: buildStadiumBorder(),
-                          errorStyle: cSmallBodyTextStyle.copyWith(
-                            color: AppColors.danger,
-                            height: 1,
-                          ),
-                          contentPadding: !hasSuffixWidget!
-                              ? prefix == null
-                                  ? const EdgeInsets.symmetric(
-                                      horizontal: 24,
-                                      vertical: 16,
-                                    )
-                                  : const EdgeInsets.only(
-                                      top: 16,
-                                      bottom: 16,
-                                      right: 24,
-                                      left: 48,
-                                    )
-                              : const EdgeInsets.only(
-                                  top: 16,
-                                  bottom: 16,
-                                  left: 24,
-                                  right: 56,
-                                )),
+                        ),
+                        focusedBorder: buildAccentStadiumBorder(),
+                        enabledBorder: buildStadiumBorder(),
+                        errorBorder: buildStadiumBorder(),
+                        errorStyle: cSmallBodyTextStyle.copyWith(
+                          color: AppColors.danger,
+                          height: 1,
+                        ),
+                        isDense: true,
+                        contentPadding: !hasSuffixWidget!
+                            ? prefix == null
+                                ? const EdgeInsets.symmetric(
+                                    horizontal: 24,
+                                    vertical: 12,
+                                  )
+                                : const EdgeInsets.only(
+                                    top: 12,
+                                    bottom: 12,
+                                    right: 24,
+                                    left: 48,
+                                  )
+                            : const EdgeInsets.only(
+                                top: 14,
+                                bottom: 14,
+                                left: 24,
+                                right: 56,
+                              ),
+                      ),
                     ),
                     if (prefix != null)
                       Positioned(
-                        top: 14,
+                        top: 10,
                         left: 14,
                         child: SizedBox(
                           height: 24,
@@ -123,7 +129,7 @@ class CTextField extends StatelessWidget {
                       ),
                     if (suffix != null)
                       Positioned(
-                        top: 14,
+                        top: 10,
                         right: 14,
                         child: SizedBox(
                           height: 24,

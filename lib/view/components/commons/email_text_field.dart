@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
 import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
-import 'package:flutter/material.dart';
 
 class EmailTextFormField extends StatelessWidget {
   final TextEditingController emailController;
@@ -23,7 +24,7 @@ class EmailTextFormField extends StatelessWidget {
         ),
         Positioned(
           top: 6,
-          right: 8,
+          right: 6,
           child: CIconButton(
             onPressed: onSubmit,
             svgIconPath: "assets/icons/icon/arrow/arrow-right.svg",

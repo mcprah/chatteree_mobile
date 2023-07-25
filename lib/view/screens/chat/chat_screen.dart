@@ -30,11 +30,11 @@ class _ChatScreenState extends State<ChatScreen> {
                 // _____ Conversation _____ //
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 12,
-                        ) +
-                        const EdgeInsets.only(bottom: 24),
+                    padding: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      top: 12,
+                    ),
                     width: double.infinity,
                     child: const ChatConversation(),
                   ),

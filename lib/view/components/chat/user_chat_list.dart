@@ -1,3 +1,4 @@
+import 'package:chatteree_mobile/view/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,10 +14,16 @@ class ChatList extends StatelessWidget {
     MessageProvider messageProvider = context.watch<MessageProvider>();
 
     return ListView.builder(
-
       itemCount: messageProvider.userMessageList.length,
       itemBuilder: (BuildContext context, int index) {
         Message userMessage = messageProvider.userMessageList[index];
+
+        var messageValues = userMessage.value!;
+
+        String latestText = messageValues
+                .lastWhere((e) => e.userId == userMessage.from.id)
+                .text ??
+            '';
 
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -24,9 +31,14 @@ class ChatList extends StatelessWidget {
             from: userMessage.from,
             dateTime: userMessage.dateTime ?? "",
             unreadCount: userMessage.unreadCount,
-            messageSnippet: userMessage.messageSnippet,
+            value: latestText,
             onTap: () {
-              print("userMessage: ${userMessage.toJson()}");
+              messageProvider.activeMessage = userMessage;
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return const ChatScreen();
+                },
+              ));
             },
           ),
         );

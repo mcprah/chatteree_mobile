@@ -1,40 +1,38 @@
+import 'package:chatteree_mobile/providers/authentication_provider.dart';
+import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chatteree_mobile/models/message_model.dart';
-import 'package:chatteree_mobile/models/user_model.dart';
 import 'package:chatteree_mobile/view/components/chat/chat_bubble.dart';
+import 'package:provider/provider.dart';
 
 class ChatConversation extends StatelessWidget {
   const ChatConversation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        ChatBubble(
-          message: Message(
-            from: User(),
-            messageSnippet: "Hello World",
-            dateTime: '6:30pm',
+    MessageProvider messageProvider = context.watch<MessageProvider>();
+    AuthenticationProvider authenticationProvider =
+        context.watch<AuthenticationProvider>();
+
+    return ListView.builder(
+      reverse: true,
+      itemCount: messageProvider.activeMessage!.value!.length,
+      itemBuilder: (BuildContext context, int idx) {
+        Value messageValue = messageProvider.activeMessage!.value![idx];
+        bool messageFromUser =
+            messageValue.userId == authenticationProvider.userData!.id;
+
+        return Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: ChatBubble(
+            message: messageValue.text ?? '',
+            from: messageProvider.activeMessage!.from,
+            dateTime: messageProvider.activeMessage!.dateTime ?? '',
+            messageFromUser: messageFromUser,
           ),
-          from: User(),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        ChatBubble(
-          message: Message(
-            from: User(),
-            messageSnippet:
-                "You for look sharp make we go see am before the day go end else la wu",
-            dateTime: '6:30pm',
-          ),
-          from: User(),
-          messageFromUser: false,
-        ),
-      ],
+        );
+      },
     );
   }
 }

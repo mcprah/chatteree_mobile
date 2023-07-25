@@ -1,12 +1,20 @@
+import 'package:chatteree_mobile/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationProvider with ChangeNotifier {
   String _email = '';
   String _verificationCode = '';
   bool _isValidCode = false;
-  bool _isRegisteredUser = false;
+  bool _isRegisteredUser = true;
   bool _isFirstTimeUser = false;
+  User? _userData = User(
+    id: 123,
+    profileImageUrl: "https://i.pravatar.cc/150?u=a042581fjjf9022314d",
+    username: "@mcprah",
+    onlineStatus: true,
+  );
 
+  User? get userData => _userData;
   String get email => _email;
   String get verificationCode => _verificationCode;
   bool get isValidCode => _isValidCode;
@@ -15,6 +23,11 @@ class AuthenticationProvider with ChangeNotifier {
 
   set email(String value) {
     _email = value;
+  }
+
+  set userData(User? value) {
+    _userData = value;
+    notifyListeners();
   }
 
   set verificationCode(String value) {

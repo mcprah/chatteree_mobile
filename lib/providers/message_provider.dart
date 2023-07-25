@@ -6,11 +6,18 @@ import 'package:flutter/material.dart';
 
 class MessageProvider with ChangeNotifier {
   List<Message> _userMessageList = [];
+  Message? _activeMessage;
 
   List<Message> get userMessageList => _userMessageList;
+  Message? get activeMessage => _activeMessage;
 
   set userMessageList(List<Message> data) {
     _userMessageList = data;
+    notifyListeners();
+  }
+
+  set activeMessage(Message? message) {
+    _activeMessage = message;
     notifyListeners();
   }
 
@@ -25,4 +32,5 @@ class MessageProvider with ChangeNotifier {
 
     userMessageList = messageList;
   }
+  
 }

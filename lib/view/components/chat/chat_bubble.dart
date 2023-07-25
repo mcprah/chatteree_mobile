@@ -11,8 +11,10 @@ class ChatBubble extends StatelessWidget {
     required this.message,
     this.messageFromUser = true,
     required this.from,
+    required this.dateTime,
   });
-  final Message message;
+  final String message;
+  final String dateTime;
   final bool messageFromUser;
   final User from;
 
@@ -52,7 +54,7 @@ class ChatBubble extends StatelessWidget {
                     : CrossAxisAlignment.start,
                 children: [
                   Text(
-                    message.dateTime ?? '',
+                    dateTime ?? '',
                     style: cSmallBodyTextStyle.copyWith(
                       color: messageFromUser
                           ? AppColors.light
@@ -65,7 +67,7 @@ class ChatBubble extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                    message.messageSnippet,
+                    message,
                     style: cBodyTextStyle.copyWith(
                       fontSize: 14,
                       color: messageFromUser ? AppColors.light : AppColors.dark,

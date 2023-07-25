@@ -1,3 +1,4 @@
+import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chatteree_mobile/utils/colors.dart';
@@ -5,6 +6,7 @@ import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/components/commons/profile_pic.dart';
 import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
+import 'package:provider/provider.dart';
 
 class ChatHeader extends StatefulWidget {
   const ChatHeader({super.key});
@@ -20,6 +22,8 @@ class _ChatHeaderState extends State<ChatHeader> {
 
   @override
   Widget build(BuildContext context) {
+    MessageProvider messageProvider = context.watch<MessageProvider>();
+
     return Container(
       padding: const EdgeInsets.only(
         left: 24,
@@ -41,9 +45,10 @@ class _ChatHeaderState extends State<ChatHeader> {
           children: [
             Row(
               children: [
-                const ProfilePic(
-                  imagePath: null,
-                  initial: "M",
+                ProfilePic(
+                  imagePath:
+                      messageProvider.activeMessage!.from.profileImageUrl,
+                  initial: messageProvider.activeMessage!.from.name![0],
                   minRadius: 20,
                   fontSize: 18,
                 ),
@@ -53,16 +58,21 @@ class _ChatHeaderState extends State<ChatHeader> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Mullah",
+                      messageProvider.activeMessage!.from.name!,
                       style: cBodyTextStyle.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
-                      "Online",
+                      messageProvider.activeMessage!.from.onlineStatus!
+                          ? "Online"
+                          : 'Offline',
                       style: cSmallBodyTextStyle.copyWith(
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.success),
+                        fontWeight: FontWeight.w500,
+                        color: messageProvider.activeMessage!.from.onlineStatus!
+                            ? AppColors.success
+                            : AppColors.gray,
+                      ),
                     ),
                   ],
                 )

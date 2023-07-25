@@ -14,26 +14,50 @@ class Message {
   final User from;
   final String? dateTime;
   final int? unreadCount;
-  final String messageSnippet;
+  final List<Value>? value;
 
   Message({
     required this.from,
-    required this.messageSnippet,
-    required this.dateTime,
-    this.unreadCount = 0,
+    this.dateTime,
+    this.unreadCount,
+    this.value,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) => Message(
-        from: User.fromJson(json["from"]),
+        from:  User.fromJson(json["from"]),
         dateTime: json["date_time"],
         unreadCount: json["unread_count"],
-        messageSnippet: json["message_snippet"],
+        value: json["value"] == null
+            ? []
+            : List<Value>.from(json["value"]!.map((x) => Value.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "from": from.toJson(),
         "date_time": dateTime,
         "unread_count": unreadCount,
-        "message_snippet": messageSnippet,
+        "value": value == null
+            ? []
+            : List<dynamic>.from(value!.map((x) => x.toJson())),
+      };
+}
+
+class Value {
+  final int? userId;
+  final String? text;
+
+  Value({
+    this.userId,
+    this.text,
+  });
+
+  factory Value.fromJson(Map<String, dynamic> json) => Value(
+        userId: json["user_id"],
+        text: json["text"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "user_id": userId,
+        "text": text,
       };
 }

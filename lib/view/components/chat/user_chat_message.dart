@@ -10,14 +10,14 @@ class UserMessage extends StatelessWidget {
   const UserMessage({
     super.key,
     required this.dateTime,
-    required this.messageSnippet,
+    required this.value,
     required this.from,
     this.unreadCount,
     this.onTap,
   });
   final User from;
   final String dateTime;
-  final String messageSnippet;
+  final String value;
   final int? unreadCount;
   final void Function()? onTap;
 
@@ -84,7 +84,7 @@ class UserMessage extends StatelessWidget {
                           SizedBox(
                             width: constriant.maxWidth * 0.91,
                             child: Text(
-                              messageSnippet,
+                              value,
                               style: cBodyTextStyle.copyWith(
                                 fontWeight: unreadCount == 0
                                     ? FontWeight.w300

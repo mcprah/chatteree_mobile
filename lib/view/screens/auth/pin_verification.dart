@@ -13,10 +13,15 @@ import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:provider/provider.dart';
 
-class Verify extends StatelessWidget {
+class Verify extends StatefulWidget {
   const Verify({super.key});
 
-  static TextEditingController textEditingController = TextEditingController();
+  @override
+  State<Verify> createState() => _VerifyState();
+}
+
+class _VerifyState extends State<Verify> {
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

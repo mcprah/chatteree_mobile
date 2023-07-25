@@ -9,7 +9,7 @@ import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
-import 'package:chatteree_mobile/view/components/chat/chat_header.dart';
+import 'package:chatteree_mobile/view/components/chat/chat_list_header.dart';
 import 'package:chatteree_mobile/view/components/chat/chat_list.dart';
 import 'package:chatteree_mobile/view/components/commons/search_bar.dart';
 import 'package:chatteree_mobile/view/components/film/user_film_list.dart';
@@ -60,9 +60,10 @@ class _ChatScreenState extends State<ChatListScreen> {
           SizedBox(
             width: constraint.maxWidth,
             child: SingleChildScrollView(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 22, vertical: 24) +
-                      const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 22,
+                vertical: 24,
+              ),
               scrollDirection: Axis.horizontal,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,7 +169,7 @@ class _ChatScreenState extends State<ChatListScreen> {
               left: 24,
               right: 24,
             ),
-            child: ChatHeader(),
+            child: ChatListHeader(),
           ),
           Expanded(
             child: authenticationProvider.isFirstTimeUser ||

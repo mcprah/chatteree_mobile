@@ -3,8 +3,9 @@ import 'package:chatteree_mobile/view/components/commons/profile_pic.dart';
 import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
 import 'package:flutter/material.dart';
 
-class ChatHeader extends StatelessWidget {
-  const ChatHeader({super.key});
+class ChatListHeader extends StatelessWidget {
+  const ChatListHeader({super.key, this.title = "Chats"});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class ChatHeader extends StatelessWidget {
       children: [
         Row(
           children: [
-           const ProfilePic(
+            const ProfilePic(
               imagePath: null,
               initial: "M",
               minRadius: 20,
@@ -21,7 +22,7 @@ class ChatHeader extends StatelessWidget {
             ),
             const SizedBox(width: 18),
             Text(
-              "Chats",
+              title,
               style: cHeading3TextStyle,
             )
           ],

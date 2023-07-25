@@ -10,6 +10,7 @@ class CIconButton extends StatelessWidget {
   final VoidCallback onPressed;
   final bool disabled;
   final CButtonType type;
+  final Color? iconColor;
 
   const CIconButton({
     super.key,
@@ -18,6 +19,7 @@ class CIconButton extends StatelessWidget {
     this.disabled = false,
     this.type = CButtonType.PRIMARY,
     required this.svgIconPath,
+    this.iconColor = AppColors.accent,
   });
 
   @override
@@ -26,15 +28,17 @@ class CIconButton extends StatelessWidget {
       size: size == CSize.SM ? const Size(40, 40) : const Size(48, 48),
       child: ClipOval(
         child: Material(
-          color: !disabled ? AppColors.primary : AppColors.gray,
+          color: !disabled
+              ? type == CButtonType.PRIMARY
+                  ? AppColors.primary
+                  : AppColors.light
+              : AppColors.gray,
           child: InkWell(
             onTap: !disabled ? onPressed : null,
             child: Center(
-              child: SvgPicture.asset(
-                svgIconPath,
-                // ignore: deprecated_member_use
-                color: AppColors.accent,
-              ),
+              child: SvgPicture.asset(svgIconPath,
+                  // ignore: deprecated_member_use
+                  color: iconColor),
             ),
           ),
         ),

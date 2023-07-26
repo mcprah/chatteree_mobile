@@ -91,29 +91,37 @@ class _UsernameSetupState extends State<UsernameSetup> {
                             width: 40,
                             height: 40,
                           )
-                        : Text(
-                            remainingText.toString(),
-                            style: cBodyTextStyle.copyWith(
-                              color: AppColors.gray,
-                            ),
-                          ),
+                        : widget.authenticationProvider.isValidUsername != null
+                            ? widget.authenticationProvider.isValidUsername!
+                                ? SvgPicture.asset(
+                                    "assets/icons/icon/interfaces/checkmark-circle.svg")
+                                : SvgPicture.asset(
+                                    "assets/icons/icon/interfaces/close-circle.svg")
+                            : Text(
+                                remainingText.toString(),
+                                style: cBodyTextStyle.copyWith(
+                                  color: AppColors.gray,
+                                ),
+                              ),
                     onChanged: (value) {
                       if (value.isEmpty) {
                         remainingText = charInputLimit;
                         formKey.currentState!.validate();
                         setState(() {});
                       } else {
+                        setState(() {
+                          isValidatingUsername = true;
+                        });
                         calculateRemainingChars(
                           charCount: textEditingController.text.length,
                           charInputLimit: charInputLimit,
                         );
-                        if (value.length > 3) {
-                          setState(() {
-                            isValidatingUsername = true;
-                          });
+                        if (value.length > 2) {
                           formKey.currentState!.validate();
+                        } else {
+                          widget.authenticationProvider.isValidUsername = null;
                         }
-
+                        // mimic validation load time
                         Future.delayed(const Duration(milliseconds: 500), () {
                           setState(() {
                             isValidatingUsername = false;
@@ -144,7 +152,7 @@ class _UsernameSetupState extends State<UsernameSetup> {
                                 "@${textEditingController.text}";
                             widget.authenticationProvider.userData!.username =
                                 fullUsername;
-                                
+
                             widget.pageController.nextPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeIn,

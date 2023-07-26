@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 class AuthenticationProvider with ChangeNotifier {
   String _email = '';
   String _verificationCode = '';
-  bool _isValidCode = false;
   bool _isRegisteredUser = false;
   bool _isFirstTimeUser = true;
 
+  bool _isValidCode = false;
+  bool? _isValidUsername;
+
   bool _isValidatingEmail = false;
-  bool _isValidatingUsername = false;
 
   User? _userData = User(
     id: 123,
@@ -20,13 +21,14 @@ class AuthenticationProvider with ChangeNotifier {
     onlineStatus: true,
   );
 
+  bool? get isValidUsername => _isValidUsername;
+  bool get isValidCode => _isValidCode;
+
   bool get isValidatingEmail => _isValidatingEmail;
-  bool get isValidatingUsername => _isValidatingUsername;
 
   User? get userData => _userData;
   String get email => _email;
   String get verificationCode => _verificationCode;
-  bool get isValidCode => _isValidCode;
   bool get isRegisteredUser => _isRegisteredUser;
   bool get isFirstTimeUser => _isFirstTimeUser;
 
@@ -35,8 +37,13 @@ class AuthenticationProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  set isValidatingUsername(bool value) {
-    _isValidatingUsername = value;
+  set isValidUsername(bool? value) {
+    _isValidUsername = value;
+    notifyListeners();
+  }
+
+  set isValidCode(bool value) {
+    _isValidCode = value;
     notifyListeners();
   }
 
@@ -56,11 +63,6 @@ class AuthenticationProvider with ChangeNotifier {
 
   set isFirstTimeUser(bool value) {
     _isFirstTimeUser = value;
-    notifyListeners();
-  }
-
-  set isValidCode(bool value) {
-    _isValidCode = value;
     notifyListeners();
   }
 
@@ -85,13 +87,20 @@ class AuthenticationProvider with ChangeNotifier {
     }
     return null;
   }
+
   String? validateUsername(String? value) {
     if (value == null || value.isEmpty) {
+      isValidUsername = null;
       return 'Username is required.';
     }
     if (value.length < 3) {
-      return 'Username must be at least 3 characters';
-    }
+      isValidUsername = null;
+      return 'Must be at least 3 characters long';
+    } 
+    final usernameRegExp = RegExp(r'^[a-zA-Z0-9_]{3,9}$');
+
+    isValidUsername = usernameRegExp.hasMatch(value);
+
     return null;
   }
 }

@@ -17,21 +17,22 @@ class UserSetup extends StatelessWidget {
 
     return DefaultLayout(
       screen: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          child: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: pageController,
-            children: [
-              UsernameSetup(
-                authenticationProvider: authenticationProvider,
-                pageController: pageController,
-              ),
-              NameDPSetup(
-                authenticationProvider: authenticationProvider,
-                pageController: pageController,
-              ),
-            ],
-          )),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: [
+            UsernameSetup(
+              authenticationProvider: authenticationProvider,
+              pageController: pageController,
+            ),
+            NameDPSetup(
+              authenticationProvider: authenticationProvider,
+              pageController: pageController,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

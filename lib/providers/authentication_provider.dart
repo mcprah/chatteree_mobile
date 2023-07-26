@@ -9,19 +9,14 @@ class AuthenticationProvider with ChangeNotifier {
 
   bool _isValidCode = false;
   bool? _isValidUsername;
+  bool? _isValidName;
 
   bool _isValidatingEmail = false;
 
-  User? _userData = User(
-    id: 123,
-    profileImageUrl: "https://i.pravatar.cc/150?u=a042581fjjf9022314d",
-    username: "@mcprah",
-    name: "Mark",
-    email: "",
-    onlineStatus: true,
-  );
+  User? _userData;
 
   bool? get isValidUsername => _isValidUsername;
+  bool? get isValidName => _isValidName;
   bool get isValidCode => _isValidCode;
 
   bool get isValidatingEmail => _isValidatingEmail;
@@ -39,6 +34,11 @@ class AuthenticationProvider with ChangeNotifier {
 
   set isValidUsername(bool? value) {
     _isValidUsername = value;
+    notifyListeners();
+  }
+
+  set isValidName(bool? value) {
+    _isValidName = value;
     notifyListeners();
   }
 
@@ -96,11 +96,28 @@ class AuthenticationProvider with ChangeNotifier {
     if (value.length < 3) {
       isValidUsername = null;
       return 'Must be at least 3 characters long';
-    } 
+    }
     final usernameRegExp = RegExp(r'^[a-zA-Z0-9_]{3,9}$');
 
     isValidUsername = usernameRegExp.hasMatch(value);
 
+    return null;
+  }
+
+  String? validateName(String? value) {
+    print("jhjhjh");
+    if (value == null || value.isEmpty) {
+      isValidName = null;
+      return 'Name is required.';
+    }
+    if (value.length < 3) {
+      isValidName = null;
+      return 'Must be at least 3 characters long';
+    }
+
+    final nameRegExp = RegExp(r'^[a-zA-Z\s]{1,18}$');
+    isValidName = nameRegExp.hasMatch(value);
+    // print(isValidName);
     return null;
   }
 }

@@ -140,11 +140,9 @@ class _UsernameSetupState extends State<UsernameSetup> {
                     children: [
                       CButton(
                         disabled:
-                            widget.authenticationProvider.verificationCode ==
-                                    '' ||
-                                widget.authenticationProvider.verificationCode
-                                        .length !=
-                                    6,
+                            widget.authenticationProvider.isValidUsername ==
+                                    null ||
+                                !widget.authenticationProvider.isValidUsername!,
                         text: "Continue",
                         onPressed: () {
                           if (formKey.currentState!.validate()) {

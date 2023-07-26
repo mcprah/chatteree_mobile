@@ -19,7 +19,7 @@ class ChatListHeader extends StatelessWidget {
         Row(
           children: [
             ProfilePic(
-              imagePath: authenticationProvider.userData!.profileImageUrl!,
+              imagePath: authenticationProvider.userData!.profileImageUrl,
               initial: authenticationProvider.userData!.name![0],
               minRadius: 20,
               fontSize: 18,

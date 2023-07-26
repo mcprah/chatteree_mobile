@@ -1,16 +1,17 @@
 import 'dart:io';
 
-import 'package:chatteree_mobile/utils/constants.dart';
-import 'package:chatteree_mobile/utils/notification.dart';
-import 'package:chatteree_mobile/utils/utils.dart';
-import 'package:chatteree_mobile/view/screens/chat/chat_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:chatteree_mobile/providers/authentication_provider.dart';
 import 'package:chatteree_mobile/utils/colors.dart';
+import 'package:chatteree_mobile/utils/constants.dart';
+import 'package:chatteree_mobile/utils/notification.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
+import 'package:chatteree_mobile/utils/utils.dart';
+import 'package:chatteree_mobile/view/screens/chat/chat_list_screen.dart';
 import 'package:chatteree_mobile/view/widgets/c_button.dart';
+import 'package:chatteree_mobile/view/widgets/c_loader.dart';
 import 'package:chatteree_mobile/view/widgets/c_textfield.dart';
 
 class NameDPSetup extends StatefulWidget {
@@ -28,10 +29,12 @@ class NameDPSetup extends StatefulWidget {
 }
 
 class _NameDPSetupState extends State<NameDPSetup> {
+  final formKey2 = GlobalKey<FormState>();
   int charInputLimit = 18;
   late int remainingText;
   File? imageFile;
   TextEditingController textEditingController = TextEditingController();
+  bool isValidatingName = false;
 
   void calculateRemainingChars({
     required int charCount,
@@ -150,45 +153,101 @@ class _NameDPSetupState extends State<NameDPSetup> {
                 const SizedBox(
                   height: 48,
                 ),
-                CTextField(
-                  label: "Your name",
-                  textController: textEditingController,
-                  placeholder: "",
-                  maxLength: charInputLimit,
-                  onChanged: (val) {
-                    if (val.isNotEmpty) {
-                      calculateRemainingChars(
-                        charCount: textEditingController.text.length,
-                        charInputLimit: charInputLimit,
-                      );
-                    } else if (val.isEmpty) {
-                      remainingText = charInputLimit;
-                      setState(() {});
-                    }
-                  },
-                  suffix: Text(
-                    remainingText.toString(),
-                    style: cBodyTextStyle.copyWith(
-                      color: AppColors.gray,
-                    ),
+                Form(
+                  key: formKey2,
+                  child: Column(
+                    children: [
+                      CTextField(
+                        label: "Your name",
+                        textController: textEditingController,
+                        placeholder: "",
+                        maxLength: charInputLimit,
+                        onChanged: (val) {
+                          formKey2.currentState!.validate();
+                          if (val.isEmpty) {
+                            remainingText = charInputLimit;
+                            setState(() {});
+                          } else {
+                            isValidatingName = true;
+                            calculateRemainingChars(
+                              charCount: textEditingController.text.length,
+                              charInputLimit: charInputLimit,
+                            );
+                            if (val.length < 2) {
+                              widget.authenticationProvider.isValidName = null;
+                            }
+                            // mimic validation load time
+                            Future.delayed(const Duration(milliseconds: 500),
+                                () {
+                              setState(() {
+                                isValidatingName = false;
+                              });
+                            });
+                          }
+                        },
+                        validator: (value) {
+                          return widget.authenticationProvider
+                              .validateName(value);
+                        },
+                        suffix: isValidatingName
+                            ? const CLoader(
+                                width: 40,
+                                height: 40,
+                              )
+                            : widget.authenticationProvider.isValidName != null
+                                ? widget.authenticationProvider.isValidName!
+                                    ? SvgPicture.asset(
+                                        "assets/icons/icon/interfaces/checkmark-circle.svg")
+                                    : SvgPicture.asset(
+                                        "assets/icons/icon/interfaces/close-circle.svg")
+                                : Text(
+                                    remainingText.toString(),
+                                    style: cBodyTextStyle.copyWith(
+                                      color: AppColors.gray,
+                                    ),
+                                  ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(
                   height: 42,
                 ),
                 CButton(
-                  disabled: textEditingController.text.trim().isEmpty,
+                  disabled: widget.authenticationProvider.isValidName == null ||
+                      !widget.authenticationProvider.isValidName!,
                   text: "Let’s geauxxxx!",
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const ChatListScreen();
-                        },
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
+                    if (formKey2.currentState!.validate()) {
+                      // Set user's name
+                      widget.authenticationProvider.userData!.name =
+                          textEditingController.text;
+                      // Set user's profile picture
+                      if (imageFile != null) {
+                        // widget.authenticationProvider.userData!
+                        //     .profileImageUrl = imageFile!.path;
+                      } else {
+                        widget.authenticationProvider.userData!
+                                .profileImageUrl =
+                            "https://i.pravatar.cc/150?u=a042581fjjf9022314d";
+                        widget.authenticationProvider.userData!
+                            .profileImageUrl = null;
+                      }
+
+                      // Set user's online status
+                      widget.authenticationProvider.userData!.onlineStatus =
+                          true;
+
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const ChatListScreen();
+                          },
+                        ),
+                        (Route<dynamic> route) => false,
+                      );
+                    }
                   },
                 ),
               ],

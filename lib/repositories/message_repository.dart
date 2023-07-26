@@ -68,12 +68,12 @@ class MessageRepository {
         "unread_count": 0,
         "value": [
           {
-            "user_id": 123,
-            "text": "Hello, You're welcome",
-          },
-          {
             "user_id": 3,
             "text": "Thanks for your help!",
+          },
+          {
+            "user_id": 123,
+            "text": "Hello, You're welcome",
           },
           {
             "user_id": 5,

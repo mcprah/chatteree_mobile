@@ -33,7 +33,7 @@ class _NameDPSetupState extends State<NameDPSetup> {
   File? imageFile;
   TextEditingController textEditingController = TextEditingController();
 
-  void calculateRemasiningChars({
+  void calculateRemainingChars({
     required int charCount,
     required int charInputLimit,
   }) {
@@ -157,7 +157,7 @@ class _NameDPSetupState extends State<NameDPSetup> {
                   maxLength: charInputLimit,
                   onChanged: (val) {
                     if (val.isNotEmpty) {
-                      calculateRemasiningChars(
+                      calculateRemainingChars(
                         charCount: textEditingController.text.length,
                         charInputLimit: charInputLimit,
                       );

@@ -1,3 +1,5 @@
+import 'package:chatteree_mobile/models/user_model.dart';
+import 'package:chatteree_mobile/providers/authentication_provider.dart';
 import 'package:chatteree_mobile/view/components/commons/email_text_field.dart';
 import 'package:chatteree_mobile/view/components/commons/google_signin_button.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:chatteree_mobile/utils/theme.dart';
 import 'package:chatteree_mobile/view/screens/layout/default.dart';
 import 'package:chatteree_mobile/view/screens/auth/pin_verification.dart';
+import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -24,6 +27,9 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationProvider authenticationProvider =
+        context.watch<AuthenticationProvider>();
+
     return DefaultLayout(
       screen: Column(
         mainAxisSize: MainAxisSize.min,
@@ -73,7 +79,10 @@ class _SignInState extends State<SignIn> {
                       EmailTextFormField(
                         emailController: emailController,
                         onSubmit: () {
-                          // process signin
+                          authenticationProvider.userData = User(
+                            id: 123,
+                            email: emailController.text,
+                          );
                           Navigator.push(
                             context,
                             MaterialPageRoute(

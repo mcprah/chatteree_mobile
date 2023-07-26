@@ -55,7 +55,6 @@ class _VerifyState extends State<Verify> {
             // Enter 123456 to verify, any other code will fail
             textEditingController: textEditingController,
             onCompleted: (value) {
-              print(value);
               authenticationProvider.validatePin(value);
               if (!authenticationProvider.isValidCode) {
                 CNoty.showToast(

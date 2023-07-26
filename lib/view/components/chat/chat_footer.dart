@@ -56,6 +56,8 @@ class _ChatFooterState extends State<ChatFooter> {
               ? CIconButton(
                   onPressed: () {
                     widget.textEditingController.clear();
+                    hasTypedText = false;
+                    setState(() {});
                   },
                   type: CButtonType.PRIMARY,
                   size: CSize.MD,

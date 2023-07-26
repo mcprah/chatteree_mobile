@@ -10,11 +10,11 @@ String userToJson(User data) => json.encode(data.toJson());
 
 class User {
   final int? id;
-  final String? profileImageUrl;
-  final String? username;
-  final String? email;
-  final String? name;
-  final bool? onlineStatus;
+  late String? profileImageUrl;
+  late String? username;
+  late String? email;
+  late String? name;
+  late bool? onlineStatus;
 
   User({
     this.id,
@@ -28,9 +28,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         profileImageUrl:
-            json["profile_image_url"] != "" 
-                ? json["profile_image_url"]
-                : null,
+            json["profile_image_url"] != "" ? json["profile_image_url"] : null,
         username: json["username"],
         email: json["email"],
         name: json["name"],

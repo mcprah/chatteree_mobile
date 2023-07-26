@@ -136,6 +136,7 @@ class _NameDPSetupState extends State<NameDPSetup> {
                               color: AppColors.danger,
                             );
                           }
+                          print(imageFile);
                           setState(() {});
                         },
                         type: CButtonType.SECONDARY,
@@ -230,13 +231,12 @@ class _NameDPSetupState extends State<NameDPSetup> {
                         widget.authenticationProvider.userData!
                                 .profileImageUrl =
                             "https://i.pravatar.cc/150?u=a042581fjjf9022314d";
-                        widget.authenticationProvider.userData!
-                            .profileImageUrl = null;
                       }
 
                       // Set user's online status
                       widget.authenticationProvider.userData!.onlineStatus =
                           true;
+                      widget.authenticationProvider.isRegisteredUser = true;
 
                       Navigator.pushAndRemoveUntil(
                         context,

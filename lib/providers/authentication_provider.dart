@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class AuthenticationProvider with ChangeNotifier {
   String _email = '';
   String _verificationCode = '';
-  bool _isRegisteredUser = false;
+  
+  // Change this 
+  bool _isRegisteredUser = true;
   bool _isFirstTimeUser = true;
 
   bool _isValidCode = false;
@@ -105,7 +107,6 @@ class AuthenticationProvider with ChangeNotifier {
   }
 
   String? validateName(String? value) {
-    print("jhjhjh");
     if (value == null || value.isEmpty) {
       isValidName = null;
       return 'Name is required.';
@@ -117,7 +118,7 @@ class AuthenticationProvider with ChangeNotifier {
 
     final nameRegExp = RegExp(r'^[a-zA-Z\s]{1,18}$');
     isValidName = nameRegExp.hasMatch(value);
-    // print(isValidName);
+
     return null;
   }
 }

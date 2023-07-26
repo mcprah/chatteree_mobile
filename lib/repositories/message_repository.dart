@@ -43,7 +43,7 @@ class MessageRepository {
           "username": "@alex_smith",
           "email": "alex.smith@example.com",
           "name": "Alex Smith",
-          "online_status": false,
+          "online_status": true,
         },
         "date_time": "09:45am",
         "unread_count": 1,

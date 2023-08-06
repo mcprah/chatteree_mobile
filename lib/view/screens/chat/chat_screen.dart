@@ -14,6 +14,13 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   TextEditingController textEditingController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +40,18 @@ class _ChatScreenState extends State<ChatScreen> {
                     padding: const EdgeInsets.only(
                       left: 24,
                       right: 24,
-                      top: 12,
                     ),
                     width: double.infinity,
-                    child: const ChatConversation(),
+                    child: ChatConversation(
+                      scrollController: scrollController,
+                    ),
                   ),
                 ),
 
                 // _____ Chat footer _____ //
                 ChatFooter(
                   textEditingController: textEditingController,
+                  scrollController: scrollController,
                 ),
               ],
             ),

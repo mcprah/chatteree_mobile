@@ -24,7 +24,7 @@ class Message {
   });
 
   factory Message.fromJson(Map<String, dynamic> json) => Message(
-        from:  User.fromJson(json["from"]),
+        from: User.fromJson(json["from"]),
         dateTime: json["date_time"],
         unreadCount: json["unread_count"],
         value: json["value"] == null
@@ -45,19 +45,23 @@ class Message {
 class Value {
   final int? userId;
   final String? text;
+  final String? dateTime;
 
   Value({
     this.userId,
     this.text,
+    this.dateTime,
   });
 
   factory Value.fromJson(Map<String, dynamic> json) => Value(
         userId: json["user_id"],
+        dateTime: json["date_time"],
         text: json["text"],
       );
 
   Map<String, dynamic> toJson() => {
         "user_id": userId,
+        "date_time": dateTime,
         "text": text,
       };
 }

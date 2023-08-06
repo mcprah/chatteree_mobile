@@ -30,7 +30,15 @@ class MessageProvider with ChangeNotifier {
       return messageFromJson(jsonMessage);
     }).toList();
 
-    userMessageList = messageList;
+    userMessageList = messageList.reversed.toList();
   }
-  
+
+  sendMessage({required String text, required int userId}) {
+    activeMessage!.value!.insert(0, Value(
+      userId: userId,
+      text: text.trim(),
+      dateTime: "now",
+    ));
+    notifyListeners();
+  }
 }

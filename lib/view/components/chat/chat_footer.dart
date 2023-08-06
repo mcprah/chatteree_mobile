@@ -1,12 +1,20 @@
+import 'package:chatteree_mobile/providers/authentication_provider.dart';
+import 'package:chatteree_mobile/providers/message_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chatteree_mobile/utils/colors.dart';
 import 'package:chatteree_mobile/utils/constants.dart';
 import 'package:chatteree_mobile/view/components/chat/chat_textfield.dart';
 import 'package:chatteree_mobile/view/widgets/c_icon_button.dart';
+import 'package:provider/provider.dart';
 
 class ChatFooter extends StatefulWidget {
-  const ChatFooter({super.key, required this.textEditingController});
+  const ChatFooter({
+    super.key,
+    required this.textEditingController,
+    this.scrollController,
+  });
+  final ScrollController? scrollController;
 
   final TextEditingController textEditingController;
 
@@ -23,8 +31,20 @@ class _ChatFooterState extends State<ChatFooter> {
     hasTypedText = widget.textEditingController.text.isNotEmpty;
   }
 
+  void _scrollToBottom() {
+    widget.scrollController!.animateTo(
+      widget.scrollController!.position.maxScrollExtent,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    MessageProvider messageProvider = context.watch<MessageProvider>();
+    AuthenticationProvider authenticationProvider =
+        context.watch<AuthenticationProvider>();
+
     return Container(
       padding: const EdgeInsets.all(24.0) - const EdgeInsets.only(top: 8),
       decoration: const BoxDecoration(
@@ -55,9 +75,15 @@ class _ChatFooterState extends State<ChatFooter> {
           widget.textEditingController.text.isNotEmpty
               ? CIconButton(
                   onPressed: () {
-                    widget.textEditingController.clear();
-                    hasTypedText = false;
-                    setState(() {});
+                    messageProvider.sendMessage(
+                      text: widget.textEditingController.text,
+                      userId: authenticationProvider.userData!.id!,
+                    );
+                    _scrollToBottom();
+                    setState(() {
+                      widget.textEditingController.clear();
+                      hasTypedText = false;
+                    });
                   },
                   type: CButtonType.PRIMARY,
                   size: CSize.MD,

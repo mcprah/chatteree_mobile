@@ -16,6 +16,7 @@ class MessageRepository {
         "value": [
           {
             "user_id": 2,
+            "date_time": "1d",
             "text": "Thanks for your help!",
           }
         ],
@@ -32,7 +33,11 @@ class MessageRepository {
         "date_time": "03:15pm",
         "unread_count": 7,
         "value": [
-          {"user_id": 3, "text": "Looking forward to the event!"}
+          {
+            "user_id": 3,
+            "date_time": "03:15pm",
+            "text": "Looking forward to the event!"
+          }
         ],
       },
       {
@@ -50,6 +55,7 @@ class MessageRepository {
         "value": [
           {
             "user_id": 4,
+            "date_time": "09:45am",
             "text": "Just checking in.",
           }
         ],
@@ -64,19 +70,22 @@ class MessageRepository {
           "name": "Mike Johnson",
           "online_status": false,
         },
-        "date_time": "5d",
+        "date_time": "09:45am",
         "unread_count": 0,
         "value": [
           {
             "user_id": 3,
+            "date_time": "1d",
             "text": "Thanks for your help!",
           },
           {
             "user_id": 123,
+            "date_time": "1d",
             "text": "Hello, You're welcome",
           },
           {
             "user_id": 5,
+            "date_time": "09:45am",
             "text":
                 "You for look sharp make we go see am before the day go end else la wu!"
           },

@@ -26,8 +26,8 @@ class ChatBubble extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         textDirection: messageFromUser ? TextDirection.rtl : TextDirection.ltr,
         children: [
-          const ProfilePic(
-            imagePath: "https://i.pravatar.cc/150?u=a042581f4e290267045",
+          ProfilePic(
+            imagePath: from.profileImageUrl,
             minRadius: 15,
             fontSize: 12,
           ),

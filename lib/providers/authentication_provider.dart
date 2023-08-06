@@ -6,8 +6,8 @@ class AuthenticationProvider with ChangeNotifier {
   String _verificationCode = '';
 
   // Change this
-  bool _isRegisteredUser = false;
-  bool _isFirstTimeUser = true;
+  bool _isRegisteredUser = true;
+  bool _isFirstTimeUser = false;
 
   bool _isValidCode = false;
   bool? _isValidUsername;

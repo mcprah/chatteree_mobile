@@ -1,6 +1,7 @@
 class FilmRepository {
   List<Map<String, dynamic>> fetchFilmListFromRepo() {
-    List<Map<String, dynamic>> filmDataList = [
+    List<Map<String, dynamic>> 
+    filmDataList = [
       {
         "thumbnailUrl": "https://i.pravatar.cc/150?u=a042581f4e2902ds04d",
         "username": "Alex Smith",

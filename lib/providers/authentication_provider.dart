@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class AuthenticationProvider with ChangeNotifier {
   String _email = '';
   String _verificationCode = '';
-  
-  // Change this 
-  bool _isRegisteredUser = true;
+
+  // Change this
+  bool _isRegisteredUser = false;
   bool _isFirstTimeUser = true;
 
   bool _isValidCode = false;
@@ -81,12 +81,19 @@ class AuthenticationProvider with ChangeNotifier {
   String? validateEmail(String? value) {
     isValidatingEmail = true;
     if (value == null || value.isEmpty) {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        isValidatingEmail = false;
+      });
       return 'Email is required.';
     }
     final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     if (!emailRegExp.hasMatch(value)) {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        isValidatingEmail = false;
+      });
       return 'Invalid email format.';
     }
+
     return null;
   }
 
